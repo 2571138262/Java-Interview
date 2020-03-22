@@ -1,0 +1,288 @@
+# 网络知识考点
+## 一、OSI开放式互联参考模型
+### 1、物理层
+    解决两台物理机器之间的交互，
+    传输比特流，将0101信号转换成电信号，
+    所谓的 数模转换 与 模数转换
+    这一层的数据叫做比特
+    网卡就是工作在这一层的
+    
+    
+### 2、数据链路层
+    在传输比特流的过程中，会产生错传，数据传输不完整的可能，因此会有数据链路层
+    数据链路层定义了如何格式化数据以进行传输，以及如何控制对物理介质的访问
+    这一层还提供的数据的检测，确保数据数据传输的可靠性
+    这层将 比特数据 组成了 帧
+    交换机工作在这一层，对帧解码，并根据帧中包含的信息，把数据发送到正确的接收方
+    
+
+### 三、网络层
+    随着网络节点的不断增加，点对点通信的时候是需要经过多个节点的，那么如何找到目标节点，如何选择最佳路径便成了首要需求
+    网络层的主要功能数将网址翻译层对应的物理地址，并决定如何将数据从发送方路由到接收方
+    路由器工作在这一层，主要就是选择合适的网间路由
+    这一层的数据称为数据包
+    本层需要关注的协议就是IP协议
+    
+    
+### 四、传输层
+    传输层解决了主机间的数据传输，数据间传输可以是不同网络的，
+    并且解决了传输质量的问题
+    传输协议同时进行流量控制，或者基于接收方可接收数据的快慢程度来进行适当的发送速率
+    以太网要求每个传输的数据包最大不可超过1500个字节，所以传输层会把数据切割成多个数据包，
+        每个包又有对应的标示序列号，便于接收方收到数据包进行数据包重组
+    传输层需要关注的协议有 TCP协议 和 UDP协议    
+    
+### 五、会话层
+    方便用户使用，建立自动收发包，自动停止的功能   
+    建立与管理应用程序间的通信
+    
+    
+### 六、表示层
+    但是由于交互的系统可能不一样，比如安装包Linux上的文件.sh 和 Windows上的 .exe文件，都是不可以互相执行的
+    这个时候就需要表示层，帮我们解决不同系统之间的表示语法的问题，
+    
+### 七、应用层
+    发送方知道自己发送的消息是什么，转换成字节数组有多长，但是接收方肯定不知道，
+    应用层的网络协议就是规定发送方和接收当必须使用一个固定长度的消息头，消息头必须使用某种固定的组成，包括消息的长度等，
+    应用层只是让我们更方便的接收网络间的数据，
+    需要关注 HTTP协议
+
+
+## 二、TCP/IP
+### 1、OSI的 "实现" ： TCP/IP
+
+## 三、说说TCP的三次握手
+### 1、传输控制协议TCP简介
+* 面向连接的、可靠的、基于字节流的传输层通信协议
+* 将应用层的数据流分割成数据报文段并发送给目标节点的TCP层
+* 数据报都有序号，对方收到则发送ACK确认，未收到则重传
+* 使用校验和来检查数据在传输过程中是否有误
+
+### 2、TCP Flags  控制位
+* URG：紧急指针标志 （1：有效； 0：无效）
+* ACK：确认序号标志 （1：有效； 0：无效）
+* PSH：push标志
+* RST：重置连接标志
+* SYN：同步序号，用于建立连接过程
+* FIN：finish标志，用于释放连接
+
+### 3、"握手"是为了建立连接，TCP三次握手的流程图如下
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/shuoshuoTCPdesanciwoshou.jpg)
+
+* 在TCP/IP协议中，TCP协议提供可靠性的连接服务，采用三次握手建立一个连接。
+* 第一次握手：建立连接时，客户端发送SYN包（seq=x）到服务器，并进入SYN_SEND状态，等待服务器确认；
+* 第二次握手：服务器收到SYN包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（seq=y），即SYN+ACK包，此时服务器进入SYN-RECV状态 
+* 第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK（ack=y+1），此包发送完毕，客户端和服务器今日ESTABLISHEN状态，完成三次握手
+
+### 4、为什么需要三次握手才能建立起连接
+* 为了初始化Sequence Number的初始值，保证以后数据传输的时候数据不乱序，通过这个Sequence序号来排序
+
+### 5、首次握手的隐患 -- SYN超时
+#### 问题起因分析
+* Server收到的Client的SYN，回复SYN-ACK的时候未收到ACK确认
+* Server不断重试直至超时，Linux默认等待63秒才断开连接
+
+#### 针对SYN Flood的防护措施
+* Linux上 SYN队列满后，通过tcp_syncookies参数回发SYN Cookie
+* 若为正常连接则Client会回发SYN Cookie，直接建立连接
+
+### 6、建立连接后，Client出现故障怎么办
+#### 保活机制 
+* 向对方发送保活探测报文，如果未收到响应则继续发送
+* 尝试次数达到保活探测数仍未收到响应则中断连接
+
+
+## 四、谈谈TCP的四次挥手
+### 1、"挥手"是为了终止连接，TCP四次挥手的流程如下
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+* TCP采用四次挥手来释放连接
+* 第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传递，Client进入FIN_WAIT_1状态；
+* 第二次挥手：Server收到FIN后，发送一个ACK给Client确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态
+* 第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态；
+* 第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手
+
+
+### 2、为什么会有TIME_WAIT状态
+#### 原因
+* 确保有足够的时间让对方收到ACK包
+* 避免新旧连接混淆
+
+### 3、为什么需要四次挥手才能断开连接呢？
+#### 因为TCP是全双工的，发送方和接收方都需要FIN报文和ACK报文
+
+### 4、服务器出现大量CLOSE_WAIT状态的原因？
+#### 对方关闭socket连接，我方忙于读或写，没有及时关闭连接
+* 检查代码，特别是释放资源的代码
+* 检查配置，特别是处理请求的线程配置
+
+
+## 四、UDP简介 用户数据报
+### 1、UDP报文结构
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 2、UDP的特点
+* 面向非连接
+* 不维护连接状态，支持同时向多个客户端传输相同的消息
+* 数据包报头只有8个字节，额外开销小 （TCP 20个字节）
+* 吞吐量只受限于数据生产速率、传输速度以及机器性能
+* 尽最大努力交付，不保证可靠性，不需要维持赋值的链接状态表
+* 面向报文，不对应用程序提交的报文信息进行拆分或者合并
+
+## 五、TCP和UDP的区别
+### 结论
+* 面向连接（有三次握手的过程） vs 无连接 （适合多播消息的发布，由单个点向多个点发布信息）
+* 可靠性（握手、确认、重传机制） vs 不可靠
+* 有序性（利用序列号保证有序性） vs 无序
+* 速度慢（需要建立连接） vs 速度快
+* 重量级（体现在元数据的头大小 20字节） vs 轻量级 （8字节）
+
+## 六、TCP的滑动窗口
+    建立在TCP的确认重传的基础上
+### 1、RTT和RTO
+* RTT：发送一个数据包到收到应用的ACK，所花费的时间
+* RTO：重传时间间隔
+
+### 2、TCP使用滑动窗口做流量控制和乱序重排
+    在TCP报文头中有个字段叫做Window，这个字段就是用于接收方通知发送方自己还有多少缓存区可以接收数据，
+    发送方根据接收方的处理能力还发送数据，不会导致接收方处理不过来，这便是流量控制
+* 保证TCP的可靠性
+* 保证TCP的流控特性
+
+### 3、窗口数据的计算过程
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 4、TCP会话的发送方
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 5、TCP会话的接收方
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+
+## 七、HTTP简介
+### 1、超文本传输协议HTTP主要特点
+* 支持客户/服务器模式
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+* 简单快速 
+
+   
+    客户端向服务器传送服务的时候，只需要传送请求方法（GET、HEAD、POST）和路径
+* 灵活 
+    
+    
+    HTTP 运行传输任意类型的数据对象，正在传输的对象由Content-Type加以标记
+    
+* 无连接
+    
+    
+    无连接的含义指每次连接只处理一个请求，服务器处理完客户的请求，并受到客户的应答之后即断开连接
+    从HTTP1.1之后默认使用长连接，即服务器需要等待一定时间之后才断开连接，以保证连接特性
+    
+    
+* 无状态
+
+
+    无状态是指协议对事物处理没有记忆能力，缺少状态意味着如果后续处理需要先前信息，则必须重传，这样导致每次请求传输的数据量增大
+    在服务器不需要先前消息，那么应答就较快
+    
+    
+### 3、HTTP请求结构
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 4、HTTP响应结构
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 5、请求/响应的步骤
+* 客户端连接到Web服务器（建立一个TCP套接字连接）
+* 发送HTTP请求（通过套接字发送一个文本的请求报文）
+* 服务器接收请求并返回HTTP响应（Web服务器解析该请求，服务器定位这个请求资源，服务器键资源副本写到TCP套接字，由客户端读取）
+* 释放连接TCP连接（如果连接模式为close，则服务器主动关闭连接，客户端被动关闭连接
+若连接模式为keep-alive，该连接会保持一段时间）
+* 客户端浏览器解析HTML内容（浏览器首先回去解析状态行，查看表明请求是否成功的状态码，解析每一个响应头，然后读取响应数据的HTML）
+
+### 6、在浏览器地址栏键入URL，按下回车之后经历的流程
+#### 答案
+* DNS 解析 ：先浏览器会依据URL逐层查询DNS服务器缓存，解析URL中的域名所对应的IP地址，DNS缓存从近到远依次是：
+     浏览器缓存 -> 系统缓存 -> 路由器缓存 -> IPS服务器缓存 -> 域名服务器缓存 -> 顶级域名服务器缓存
+* TCP连接 ：找到IP地址之后，会根据该IP地址和对应端口（80）和服务器建立TCP连接，（三次握手）
+* 发送HTTP请求 ：该请求将发送给服务器
+* 服务器处理请求并返回HTTP报文
+* 浏览器解析渲染页面
+* 连接结束 （四次挥手）
+
+### 7、HTTP状态码
+#### 五种可能的取值
+* 1xx ：指示信息--表示请求已接收，继续处理
+* 2xx ：成功--表示请求已被成功接收、理解、接受
+* 3xx ：重定向--要完成请求必须进行更进一步的操作
+* 4xx ：客户端错误--请求有语法错误或请求无法实现
+* 5xx ：服务端错误--服务器未能实现合法的请求
+
+#### 常见状态码
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+### 8、GET请求和POST请求的区别
+#### 从三个层面来解答
+* Http报文层面 ：GET将请求信息放在URL（URL长度有限制），POST放在报文体中
+* 数据库层面 ：GET符合幂等性和安全性（做查询操作），POST不符合（增、改）
+* 其他层面 ： GET可以被缓存、被存储， 而POST不行
+
+
+    GET：请求信息是键值对，请求信息和URL之间以？隔开
+    POST：请求信息是在报文体重，想获得请求信息，必须解析报文
+    实时上，安全性两者并没有区别，想获取报文体中的信息也很容易，具体的安全问题还是要考HTTPS
+
+
+### 9、Cookie 和 Session 的区别
+#### Cookie简介
+* 是由服务器发给客户端的特殊信息，以文本的形式存放在客户端
+* 客户端再次请求的时候，会把Cookie回发
+* 服务器接收后，会解析Cookie生成与客户端响应的内容
+
+#### Cookie的设置以及发送过程
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+#### Session简介
+* 服务器端的机制，在服务器上保存的信息
+* 解析客户端请求并操作session id，按需保存状态信息
+
+#### Session的实现方式
+* 使用Cookie来实现
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+* 适应URL回写来实现
+
+
+    服务器在发送给浏览器页面的所有连接中，都携带JSESSIONID参数
+    
+    
+#### Cookie 和 Session的区别
+* Cookie数据存放在客户的浏览器上，Session数据方在服务器上
+* Session相对于Cookie更安全
+* 若考虑减去服务器负担，应当使用Cookie
+
+
+### 9、HTTP和HTTPS的区别
+#### HTTPS简介
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+#### SSL（Security Sockets Layer， 安全套接层）
+* 为网络通信提供安全及数据完整性的一种安全协议
+* 是操作系统对外的API，SSL3.0后更名为TLS
+* 采用身份认证和数据加密保证网络通信的完全和数据的完整性
+
+#### 加密的方式
+* 对称加密：加密和解密都使用同一个密钥
+* 非对称加密：加密使用的密钥和解密使用密钥是不相同的
+* 哈希算法：将任意长度的信息转换为固定长度的值，算法不可逆 （MD5）
+* 数字签名：证明某个消息或者文件是某人发出/认同的
+
+#### HTTPS数据传输流程
+![Image](https://github.com/2571138262/RabbitMQ-Learning/blob/master/images-folder/tantanTCPdesicihuishou.jpg)
+
+
+#### HTTP和HTTPS的区别
+* HTTPS需要到CA申请证书，HTTP不需要
+* HTTPS密文传世，HTTP明文传输
+* 连接方式不同，HTTP默认使用443端口，HTTP使用80端口
+* HTTPS=HTTP+加密+认证+完整性包含，叫HTTP安全 
