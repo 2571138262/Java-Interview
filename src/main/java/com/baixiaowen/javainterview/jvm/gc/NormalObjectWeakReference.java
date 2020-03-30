@@ -1,4 +1,19 @@
 package com.baixiaowen.javainterview.jvm.gc;
 
-public class NormalObjectWeakReference {
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+
+public class NormalObjectWeakReference extends WeakReference<NormalObject> {
+
+    public String name;
+    
+    public NormalObjectWeakReference(NormalObject normalObject, ReferenceQueue<NormalObject> rq) {
+        super(normalObject, rq);
+        this.name = normalObject.name;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.err.println("Finalizing NormalObjectWeakReference " + name);
+    }
 }
