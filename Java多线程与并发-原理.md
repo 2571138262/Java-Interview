@@ -37,7 +37,25 @@
 ### 2、对象在内存中的布局（分为三块区域）
 * 对象头
 * 实例数据
-* 对其填充
+* 对齐填充
 
 ### 3、对象头结构
-* Mark Word:
+* Mark Word:是实现轻量级锁和偏向锁的关键
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/duixiangtoujiegou.jpg)
+
+#### （1）、Mark Word 
+* 由于对象头信息是与对象自身定义的没有关系的额外存储成本，因此考虑JVM的空间效率，Mark Word 被设计成为非固定的数据结构，
+以便存储更多的有效数据，它会根据对象本身的状态，复用自己的存储空间
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/MardWord.jpg)
+
+### 4、Monitor : 每个Java对象天生自带了一把看不见的锁，它叫做内部锁，或者monitor锁，Monitor也称为管程或者监视器锁，可以理解同步工具，也可以描述为一种同步机制
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/MardWord.jpg)
+* 重量级锁: 也就是通常说的Synchronized对象锁，锁的标识为是10，指针指向monitor对象的起始地址
+* 在Java虚拟机中，monitor是由hospot虚拟机实现的，是由C++编写的 
+
+### 5、Monitor锁的竞争、获取与释放
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/monitorsuojingzhengyushifang.jpg)
+
+### 6、什么是重入
+###### 从互斥锁的设计上来说，当一个线程试图操作一个由其他线程持有的对象锁的临界资源时，将会处于阻塞状态，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入
+
