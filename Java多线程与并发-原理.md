@@ -41,20 +41,20 @@
 
 ### 3、对象头结构
 * Mark Word:是实现轻量级锁和偏向锁的关键
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/duixiangtoujiegou.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/duixiangtoujiegou.jpg)
 
 #### （1）、Mark Word 
 * 由于对象头信息是与对象自身定义的没有关系的额外存储成本，因此考虑JVM的空间效率，Mark Word 被设计成为非固定的数据结构，
 以便存储更多的有效数据，它会根据对象本身的状态，复用自己的存储空间
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/MardWord.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/MardWord.jpg)
 
 ### 4、Monitor : 每个Java对象天生自带了一把看不见的锁，它叫做内部锁，或者monitor锁，Monitor也称为管程或者监视器锁，可以理解同步工具，也可以描述为一种同步机制
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/MardWord.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/MardWord.jpg)
 * 重量级锁: 也就是通常说的Synchronized对象锁，锁的标识为是10，指针指向monitor对象的起始地址
 * 在Java虚拟机中，monitor是由hospot虚拟机实现的，是由C++编写的 
 
 ### 5、Monitor锁的竞争、获取与释放
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/monitorsuojingzhengyushifang.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/monitorsuojingzhengyushifang.jpg)
 
 ### 6、什么是重入
 ###### 从互斥锁的设计上来说，当一个线程试图操作一个由其他线程持有的对象锁的临界资源时，将会处于阻塞状态，但当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入
@@ -112,7 +112,7 @@
 ##### 而当线程获取锁时，Java内存模型会把该线程对应的本地内存置为无效，从而是得被监视器保护的临界区代码必须从主内存中读取共享变量
 
 ### 16、偏向锁、轻量级锁、重量级锁的汇总
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/monitorsuojingzhengyushifang.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/monitorsuojingzhengyushifang.jpg)
 
 
 ## 三、synchronized和ReentrantLock的区别
@@ -179,7 +179,7 @@
 
 
 ### 3、JMM如何解决可见性问题
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/JMMruhejiejuekejianxingwenti.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/JMMruhejiejuekejianxingwenti.jpg)
 
 #### (1)、指令重排序需要满足的条件
 * 在单线程环境下不能改变程序运行的结果
@@ -191,7 +191,7 @@
     i = 1; // 线程A执行
     j = i; // 线程B执行
     
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/happens-before.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/happens-before.jpg)
 
 
 ### 4、happens-before的概念
@@ -290,7 +290,7 @@ synchronized则是锁定当前变量，只有当前线程可以访问该变量�
 ###### 在Web开发中服务器需要接受请求并且处理请求，所以会为一个请求来分配一个线程来处理，如果并发的请求非常多，但每个线程执行的时间很多，这样就会频繁的创建和销毁线程，这样就会大大降低服务器的效率
 
 ### 1、利用Executors创建不同的线程池满足不同场景的需求
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/javaxianchengchi.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/javaxianchengchi.jpg)
 #### (1)、newFixedThreadPool(int nThreads)
 ###### 指定工作线程数量的线程数
 #### (2)、newCachedThreadPool()
@@ -312,7 +312,7 @@ synchronized则是锁定当前变量，只有当前线程可以访问该变量�
 ###### Java7提供的一个用于并行执行任务的框架，
 * 把大人物分割成若干个小人物并行执行，最终汇总每个小任务结束后得到大人物结果的框架
 * Work-Stealing算法：某个线程从其他队列里窃取任务来执行
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/fork-join.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/fork-join.jpg)
 
 
 ### 3、为什么要使用线程池
@@ -321,7 +321,7 @@ synchronized则是锁定当前变量，只有当前线程可以访问该变量�
 
 ### 4、Executor的框架
 ###### Executor框架是根据一组执行策略来调用，调度、执行、和控制的异步任务的框架，目的是提供一种将任务提交与任务如何运行的分离开来的机制
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/Executor.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/Executor.jpg)
 
 
 ### 5、J.U.C的三个Executor接口
@@ -340,7 +340,7 @@ synchronized则是锁定当前变量，只有当前线程可以访问该变量�
 
 
 ### 6、ThreadPoolExecutor (线程池的核心实现类)
-![Image](https://github.com/2571138262/Java-Interview/tree/master/ThreadPoolExecutor.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/ThreadPoolExecutor.jpg)
 
 
 ### 7、ThreadPoolExecutor的构造函数
@@ -375,10 +375,10 @@ synchronized则是锁定当前变量，只有当前线程可以访问该变量�
 
 
 ### 11、状态转换图
-![Image](https://github.com/2571138262/Java-Interview/tree/master/zhuangtaizhuanhuantu.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/zhuangtaizhuanhuantu.jpg)
 
 ### 12、工作线程的生命周期
-![Image](https://github.com/2571138262/Java-Interview/tree/master/gongzuoxianchengdeshengmingzhouqi.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/gongzuoxianchengdeshengmingzhouqi.jpg)
 
 ### 13、线程池的大小如何选定
 * 如果任务为CPU密集型 : 线程数 = 按照核数或者核数 +1 设定

@@ -1,14 +1,14 @@
 # Java线程知识考点
 ## 一、进程和线程的区别
 ### 1、进程和线程的由来
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/jinchenghexianchengdeyoulai.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/jinchenghexianchengdeyoulai.jpg)
 ### 2、进程和线程的区别
 #### 进程是资源分配的最小单位，线程是CPU调度的最小单位
 * 所有与进行相关的资源，都被记录在PCD中
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/pcb.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/pcb.jpg)
 * 进程是抢占处理机的调度单位；线程属于某个进程，共享其资源
 * 线程只有堆栈寄存器、程序计数器和TCB(线程控制表)组成
-![Image](https://github.com/2571138262/Java-Interview/tree/master/images-folder/xianchengzicheng.jpg)
+![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/xianchengzicheng.jpg)
 
 
 ### 3、总结
