@@ -36,7 +36,7 @@
 
 ### 管道操作符 | 
 * 可将指令连接起来，前一个指令的输出作为后一个指令的输入
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/guandaocaozuofu.jpg)
+![avator](images-folder/guandaocaozuofu.jpg)
 
 #### 使用管道注意的要点
 * 只处理前一个命令正确输出，不处理错误输出
