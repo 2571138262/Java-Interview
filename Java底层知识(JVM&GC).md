@@ -13,7 +13,7 @@
 ###### class文件保存的就是我们java文件翻译成的二级制字节码，也就是Java类文件中的属性方法以及类中的常量信息都会被分别存储在 .class 文件中，
 ###### 当然还会添加一个共有的静态常量属性 .class，这个属性记录了类的相关信息，即类型信息，是Class的一个实例  
 * 运行时
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/javapingtaiwuguanxing.jpg)
+![avator](images-folder/javapingtaiwuguanxing.jpg)
 #### Java源码首先被编译成字节码，再由不同的JVM进行解析，Java语言在不同平台的JVM进行解析，Java语言在不同的平台上运行时不需要进行重新编译，Java虚拟机在执行字节码的时候，把字节码转换成具体凭条和是哪个的机器指令
 
 ### 为什么JVM不直接将源码解析成机器码去执行？
@@ -25,7 +25,7 @@
 #### JVM主要有 Class Loader、Runtime Data Area、Execution Engine、Native Interface这四个部分组成，它主要通过ClassLoader将符合格式要求的Class文件加载到内存里，并通过Execution Engine去解析Class文件里的字节码并提交给操作系统去执行。
 ### 1、Java虚拟机 
 ###### 虚拟机是一种抽象化的计算机，通过在实际的计算机上，仿真模拟各种计算机功能来实现的，JVM有自己完善的硬件架构（如：处理器，堆栈，寄存器等，还具有相应的指令系统），JVM屏蔽了与具体操作系统平台相关的信息，使得Java程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多个平台上不加修改的运行
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/javapingtaiwuguanxing.jpg)
+![avator](images-folder/javapingtaiwuguanxing.jpg)
 * Class Loader : 依据特定格式，加载class文件到内存
 * Runtime Data Area : JVM内存空间结构模型
 * Execution Engine : 对命令进行解析
@@ -76,7 +76,7 @@
 ###### findClass根据名称或者位置去加载 .class 字节码， 然后它会调用 defineClass 去解析定义 .class 字节流， 返回Class对象
 
 ## 六、ClassLoader的双亲委派机制
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/ClassLoaderdeshuangqinweipaijizhi.jpg)
+![avator](images-folder/ClassLoaderdeshuangqinweipaijizhi.jpg)
 ### 为什么要使用双亲委派机制去加载类
 * 避免多份同样字节码的加载
 
@@ -125,14 +125,14 @@
 
 ## 八、你了解Java的内存模型么？
 ### 1、内存简介
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/neicunjianjie.jpg)
+![avator](images-folder/neicunjianjie.jpg)
 
 ### 2、地址空间的划分
 * 内核空间 ：主要的操作系统程序，和C运行时的空间，包括计算机硬件、调度程序、提供联网和虚拟内存等服务的逻辑和基于C的进程
 * 用户空间 ：Java进程实际运行时使用的空间
 
 ### 3、JVM内存模型 - JDK8
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/JVMneicunjiegou.jpg)
+![avator](images-folder/JVMneicunjiegou.jpg)
 #### （1）、程序技术器（Program Counter Register）
 ####### 程序技术器是逻辑计数器，非物理计数器，为了线程切换后都能恢复正确的执行位置，每个线程都有一个独立的线程计数器，只为Java方法计数
 * 当前线程所执行的字节码行号指示器（逻辑）
@@ -145,14 +145,14 @@
 #### （2）、Java虚拟机栈（Stack）
 * Java方法执行的内存模型，是线程私有的
 * 包含多个栈帧
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/zhanzhen.jpg)
+![avator](images-folder/zhanzhen.jpg)
 ###### 每个方法被执行时够会创建一个栈帧，即方法运行期间的基础数据结构，栈帧用于存储局部变量表、操作数栈，动态链接、方法出口等，每个方法执行中对应虚拟机栈帧从入栈到出栈的过程，Java虚拟机栈用来存储栈帧，而栈帧持有局部变量的部分结果以及参与方法的调用与返回，当方法调用结束时，帧才会被销毁
     局部变量表和操作数栈
     1、局部变量表：包含方法执行过程中的所有变量
     2、操作数栈 ：入栈、出栈、赋值、交换、产生消费变量
     
 ##### 栈帧的执行过程 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/zhixingadd.jpg)
+![avator](images-folder/zhixingadd.jpg)
 ###### 通过这张图的分析，局部变量列表主要是为操作数栈提供必要的数据支撑
 
 ##### 递归为什么会引发java.lang.StackOverflowError异常？
@@ -180,7 +180,7 @@
 #### （5）、Java堆（Heap）
 * 对象实例的分配区域
 * GC管理的主要区域
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/Heap.jpg)
+![avator](images-folder/Heap.jpg)
 
 
 
@@ -206,8 +206,8 @@
 
 
 ### 3、元空间、堆、线程独占部分间的联系 --- 内存角度
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/shilidaima.jpg)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/neicunjiaodu.jpg)
+![avator](images-folder/shilidaima.jpg)
+![avator](images-folder/neicunjiaodu.jpg)
 
 
 ### 4、不同JDK版本之间的intern()方法的区别 --- JDK6 VS JDK6+
@@ -237,7 +237,7 @@
 
 #### （3）。可达性分析算法
 ##### 通过判断对象的引用链是否可达来决定对象是否可以被回收？
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/kexingxingfenxisuanfa.png)
+![avator](images-folder/kexingxingfenxisuanfa.jpg)
 ##### 可以作为GC Root的对象
 * 虚拟机栈中引用的对象（栈帧中的本地变量表）
 ###### 比如在Java方法里new 了一个Object对象，并赋值给了一个局部变量，那么在该局部变量没有销毁之前，new 出的Object就会成为GC Root
@@ -253,7 +253,7 @@
 * 标记 ：从根集合进行扫描，对存活的对象进行标记
 * 清除 ：对堆内存从头到尾进行线性遍历，回收不可达对象内存
 ##### 缺点  --  碎片化
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/biaojiqingchusuanfa.jpg)
+![avator](images-folder/biaojiqingchusuanfa.jpg)
 
 #### （2）、复制算法（Copying）
 * 分为对象面和空闲面
@@ -265,7 +265,7 @@
 * 顺序分配内存，简单高效
 * 适用于对象存活率低的场景 
 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/fuzhisuanfa.jpg)
+![avator](images-folder/fuzhisuanfa.jpg)
 ##### 缺点
 ###### 复制收集算法在应对对象存活率较高的时候，要进行较多的赋值操作，效率就会变低，更关键的是如果不想浪费50%的空间，就需要有额外的空间进行分配担保，以应对使用的内存中所有对象都100%存活的极端情况，比如老年代
 
@@ -277,7 +277,7 @@
 * 避免内存的不连续性
 * 不需要设置俩块内存互换
 * 适用于存活率高的场景
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/biaojizhenglisuanfa.jpg)
+![avator](images-folder/biaojizhenglisuanfa.jpg)
 
 #### （4）、分代收集算法（Generational Collector）   -----   主流的垃圾回收算法
 * 垃圾回收算法的组合拳
@@ -285,9 +285,9 @@
 * 目的：提高JVM的回收效率
 
 ##### JDK6、JDK7
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/GCJDK67.jpg)
+![avator](images-folder/GCJDK67.jpg)
 ##### JDK8+
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/GCJDK8.jpg)
+![avator](images-folder/GCJDK8.jpg)
 
 ##### 分代收集算法的GC分类
 * Minor GC 年轻代的GC 采用复制算法
@@ -296,7 +296,7 @@
 ##### 年轻代 ：尽可能快速地收集掉那些生命周期短的对象
 * Eden 区
 8 两个Survivor区
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/nianqingdai.jpg)
+![avator](images-folder/nianqingdai.jpg)
 
 
 ##### 对象如何晋升到老年代
@@ -311,7 +311,7 @@
 * -XX:MaxTenuringThreshold : 对象从年轻代晋升到老年代经历过GC次数的最大阈值 可以设置为超过15岁就成为老年代
 
 ##### 老年代 ：存放生命周期较长的对象
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/laoniandai.jpg)
+![avator](images-folder/laoniandai.jpg)
 
 ##### 老年代
 * Full GC 和 Major GC
@@ -342,27 +342,27 @@
 * Server
 * Client
 ### 2、垃圾收集器之间的联系
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/lajishoujiqizhijiandelianxi.jpg)
+![avator](images-folder/lajishoujiqizhijiandelianxi.jpg)
 ### 3、年轻代常见的垃圾收集器
 #### Serial收集器（-XX:+UserSerialGC,复制算法）
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/Serialshoujiqi.jpg)
+![avator](images-folder/Serialshoujiqi.jpg)
 #### ParNew收集器（-XX:+UserParNewGC,复制算法）
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/ParNewshoujiqi.jpg)
+![avator](images-folder/ParNewshoujiqi.jpg)
 #### Parallel Scavenge 收集器（-XX:+UseParallelGC,复制算法）
 * 吞吐量 = 运行用户代码时间/(运行用户代码时间+垃圾收集时间)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/ParallelScavenger.jpg)
+![avator](images-folder/ParallelScavenger.jpg)
 
 ### 4、老年代常见的垃圾收集器
 #### Serial Old 收集器（-XX:+UseSerialOldGC，标记-整理算法）
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/SerialOld.jpg)
+![avator](images-folder/SerialOld.jpg)
 #### Parallel Old 收集器（-XX:+UseParallelOldGC,标记-整理算法）
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/ParallelOld.jpg)
+![avator](images-folder/ParallelOld.jpg)
 #### CMS收集器（-XX:UseConcMarkSweepGC,标记-清除算法）
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/CMS.jpg)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/CMSshoujiqitushi.jpg)
+![avator](images-folder/CMS.jpg)
+![avator](images-folder/CMSshoujiqitushi.jpg)
 #### Garbage First收集器的特点
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/Garbage.jpg)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/Garbage2.jpg) 
+![avator](images-folder/Garbage.jpg)
+![avator](images-folder/Garbage2.jpg)
 
 
 ### 5、GC相关的面试题
@@ -412,10 +412,10 @@
     
     
 ##### 总结：强引用 > 软引用 >  若引用 > 虚引用 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/qiangruanruoxuyinyong.jpg)
+![avator](images-folder/qiangruanruoxuyinyong.jpg)
 
 ##### 类层次结构
-![Image](https://github.com/2571138262/Java-Interview/blob/master/images-folder/leicengcijiegou.jpg)
+![avator](images-folder/leicengcijiegou.jpg)
 
 ##### 引用队列（ReferenceQueue）
 * 无实际存储结构，存储逻辑依赖于内部节点之间的关系来表达
