@@ -8,7 +8,7 @@
 
 ### 2、Error和Exception的区别
 #### (1)、Java的异常体系
-![Image](https://github.com/2571138262/Java-Interview/blob/master/javayichangtixi.jpg)
+![avator](images-folder/javayichangtixi.jpg)
 * RuntimeException : 不可预知的，程序应当自行避免
 * 非RuntimeException : 可预知的，从编译器检验的异常
 
@@ -59,7 +59,7 @@
 * 在catch之后，抛出上述异常的子类，并提供足以定位的信息
 * 由前端接收AppException做统一处理
 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/yichangchulikuangjiatixi.jpg)
+![avator](images-folder/yichangchulikuangjiatixi.jpg)
 
 ### 4、try-catch的性能
 #### Java异常处理消耗性能的地方
@@ -90,12 +90,12 @@
     以空间换时间，给出一些思路
     
 ### 4、集合之List和Set
-![Image](https://github.com/2571138262/Java-Interview/blob/master/ListAndSet.jpg)
+![avator](images-folder/ListAndSet.jpg)
 
 
 ## 四、HashMap
 ### 1、集合之Map
-![Image](https://github.com/2571138262/Java-Interview/blob/master/Map.jpg)
+![avator](images-folder/Map.jpg)
 
 ### 2、HashMap、HashTable、ConcurrentHashMap
 #### (1)、HashMap（Java8 以前）: 数组 + 链表
@@ -115,7 +115,7 @@
 * 并发集合collections 
 
 ### 3、J.U.C包介绍
-![Image](https://github.com/2571138262/Java-Interview/blob/master/J.U.Czhishishuli.jpg)
+![avator](images-folder/J.U.Czhishishuli.jpg)
 ###### J.U.C 中的 Lock 方便对线程间的共享资源做更细粒度的锁控制
 ###### Condition 是由 Lock 对象创建的，一个Lock对象可以创建多个Condition，主要用于将线程的等待和唤醒(即 wait()、notify()、notifyAll()) 进行对象化
 ###### 不管是Lock 还是 Condition 都是基于AQS来实现的，而 AQS 的底层是通过 LockSupport.unPark() 和 LockSupport.park() 方法去实现线程阻塞和唤醒的， 而 LockSupport 方法的底层也是调用了 UNSAFE 本地方法来实现的
@@ -131,23 +131,23 @@
 #### (1)、CountDownLatch : 让主线程等待一组事件发生后继续执行
 * 事件指的是CountDownLatch里的countDown()方法
 ###### 需要注意的是其他线程调用完 countDown() 方法之后还是会继续执行的，也就是说 countDown() 方法调用完成之后，并不代表该子线程已经执行完毕，而是告诉主线程你可以继续执行，至少我(当前子线程)这边不会拖你后腿了，具体还需要看其他线程给不给力了
-![Image](https://github.com/2571138262/Java-Interview/blob/master/countDownLatch.jpg)
+![avator](images-folder/countDownLatch.jpg)
 #### (2)、CyclicBarrier : 阻塞当前线程，等待其他线程
 * 等待其他线程，且会阻塞自己当前线程，所有线程必须同时到达栅栏位置后，才能继续执行；
 * 所有线程到达栅栏处，可以出发执行另一个预先设置的线程
 ###### 和CountDownLatch一样，CyclicBarrier内部也是包含了一个计数器，当每个线程调用一次await()，那么它的计数器就会减一，且在他们调用await()方法的时候，如果计数器不为0，这些线程也会被阻塞，另外，当前线程会在所有线程到达栅栏的时候，即计数器为0的时候，才会跟着其他子线程一起去执行
 ###### 同样都是阻塞当前线程以等待其他线程，CountDownLatch的其他子线程是可以继续执行的，而CyclicBarrier的所有子线程会被阻塞，直到计数器变成0，这是俩者作用上的区别
 #### (3)、Semaphore : 控制某个资源可被同时访问的线程个数
-![Image](https://github.com/2571138262/Java-Interview/blob/master/Semaphore.jpg)
+![avator](images-folder/Semaphore.jpg)
 
 #### (4)、Exchanger : 俩个线程到达同步点后，相互交换数据 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/exchanger.jpg)
+![avator](images-folder/exchanger.jpg)
 ###### 交换器主要用来线程之间进行数据交换，它提供一个同步点，在这个同步点，俩个线程可以交换彼此的数据，Exchanger会产生一个同步点，一个线程先执行到达同步点，就会被阻塞，直到另外一个线程也进入到同步点为止，当来个都到达同步点之后就开始交换数据，
 ###### 线程方法中调用Exchanger.exchange()的地方，就是这个同步点，Exchanger只能用在俩个线程互相交换数据
 
 
 ### 5、BlockingQueue : 提供可阻塞的入队和出队操作 
-![Image](https://github.com/2571138262/Java-Interview/blob/master/BlockingQueue.jpg)
+![avator](images-folder/BlockingQueue.jpg)
 
 ##### 主要用于生产者-消费者模式，在多线程场景时生产者线程在队列尾部添加元素，而消费者线程则在队列头部消费元素，通过这种方式能够达到将任务的生产者和消费者进行隔离的目的
 
@@ -165,14 +165,14 @@
 
 ### 1、BIO、NIO、AIO
 #### (1)、Block-IO : InputStream和OutputStream、Reader和Writer、Socket、ServerSocket等
-![Image](https://github.com/2571138262/Java-Interview/blob/master/BlockingQueue.jpg)
+![avator](images-folder/BlockingQueue.jpg)
 ###### BIO是基于流模型来实现的，意味着其交互方式是同步阻塞的方式，在读输入流或者写入输出流的时候在读写操作完成之前，线程会一直阻塞在那里，
 ###### 他们之间的调用是可靠的线性调用顺序：程序发送请求给内核，由内核去进行通信，在内核准备好数据之前，这个线程是被挂起的，
 ###### 类比成Client-Server则其实现模式为一个连接一个线程，即客户端有连接请求时，服务端需要启动一个线程来进行处理，代操作系统返回结果。如果这个连接不做任何事情，会造成不必要的线程开销(当然可以通过线程池的机制来改善)
 ###### BIO的好处：代码比较直观，简单。缺点：IO效率和扩展性存在瓶颈
 
 #### (2)、NonBlock-IO : 构建多路复用的、同步非阻塞的IO操作
-![Image](https://github.com/2571138262/Java-Interview/blob/master/NonBlock-IO.jpg)
+![avator](images-folder/NonBlock-IO.jpg)
 ###### NIO和BIO的明显区别是，在发起第一次请求之后线程并没有被阻塞，而是反复去检查数据是否被准备好，
 ###### 类比成Client-Server模式，则其实现的模式为一个请求一个线程，即客户端发送的连接的线程都会注册到多路复用器上，多路复用器轮训到连接有IO请求时，才启动一个线程进行处理
 ###### NIO的特点是程序需要不断去询问内核是否已经准备好，第一个阶段是非阻塞的，第二个阶段是阻塞的
@@ -202,20 +202,20 @@
 * MappedByteBuffer
 
 #### (6)、NIO-Selector
-![Image](https://github.com/2571138262/Java-Interview/blob/master/NIO-Selector.jpg)
+![avator](images-folder/NIO-Selector.jpg)
 
 ###### NIO的底层使用了操作系统的多路复用
 
 #### (7)、IO多路复用 : 调用系统级别的select\poll\epoll
 ###### 优点 : 单线程可以同时处理多个网络IO
 ###### IO多路复用调用系统级别的 select\poll\epoll ，由系统进行监控IO状态，select 轮循可以监控许多的IO请求，当有一个Socket的数据被准备好的时候，就可以返回了
-![Image](https://github.com/2571138262/Java-Interview/blob/master/select-poll-epoll.jpg)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/FD剧增后带来的IO效率问题.jpg)
-![Image](https://github.com/2571138262/Java-Interview/blob/master/消息传递方式.jpg)
+![avator](images-folder/select-poll-epoll.jpg)
+![avator](images-folder/FD剧增后带来的IO效率问题.jpg)
+![avator](images-folder/消息传递方式.jpg)
 
 
 #### (8)、Asynchronous IO : 基于事件和回调机制
-![Image](https://github.com/2571138262/Java-Interview/blob/master/AIO.jpg)
+![avator](images-folder/AIO.jpg)
 
 ##### AIO 如何进一步加工处理结果
 * 基于回调 : 实现CompletionHandler接口，调用时触发回调函数
